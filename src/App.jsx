@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
+import Public from './components/Public';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>React starter template</h1>
-      </header>
+      {/* <Header /> */}
+      <Public />
+      {/* <Footer /> */}
     </div>
   );
 }
