@@ -1,3 +1,17 @@
 .champRecherche {
   display: flex;
 }
+
+.boxForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: stretch;
+  margin: 10px;
+}
+
+label {
+  font-weight: 900;
+}

@@ -2,7 +2,11 @@
   text-align: center;
 }
 
-code {
-  background: #eee;
-  color: #d04;
+.ListCard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  align-content: stretch;
 }

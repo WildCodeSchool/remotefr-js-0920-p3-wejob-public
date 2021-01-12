@@ -14,6 +14,7 @@ export default function Public() {
 
   const onSubmit = async (data) => {
     await wait(2000);
+    console.log(data);
   };
 
   console.log(errors);

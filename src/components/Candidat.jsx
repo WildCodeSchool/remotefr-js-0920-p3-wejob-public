@@ -9,12 +9,7 @@ function Candidat(props) {
       </h2>
       <h3>Disponibility: {props.disponibility}</h3>
       <img className="ProfileImg" src={props.picture} alt={props.id} />
-      <h3>
-        Description Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Aperiam maiores iusto laborum ratione corporis possimus cupiditate
-        tempore doloremque quisquam vitae assumenda corrupti ad odio nostrum
-        dolorum exercitationem, dicta, quos dignissimos.
-      </h3>
+      <h3>{props.description}</h3>
     </div>
   );
 }

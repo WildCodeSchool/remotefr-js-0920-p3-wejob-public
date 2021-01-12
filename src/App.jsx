@@ -14,8 +14,10 @@ const candidat = [
     yearsOfExperiment: 10,
     disponibility: 'as soon as possible',
     mobility: 'France',
-    language: 'french' /*"english",*/,
-    picture: './assets/60.jpg',
+    language: ['french', 'english'],
+    picture: 'https://via.placeholder.com/150',
+    description:
+      'Je suis conducteur de poids lours et je cherche un travail dans toute la france',
   },
   {
     id: 1,
@@ -28,7 +30,8 @@ const candidat = [
     disponibility: '3 months',
     mobility: 'Rhone-Alpes',
     language: 'french' /*"english", 'german',*/,
-    picture: './assets/60.jpg',
+    picture: 'https://via.placeholder.com/150',
+    description: 'lorem imsum dolor blabla',
   },
   {
     id: 2,
@@ -41,6 +44,8 @@ const candidat = [
     disponibility: 'as soon as possible',
     mobility: 'Bordeaux',
     language: 'french',
+    picture: 'https://via.placeholder.com/150',
+    description: 'lorem imsum dolor blabla',
   },
   {
     id: 3,
@@ -53,6 +58,8 @@ const candidat = [
     disponibility: '4 weeks',
     mobility: 'Aix en Provence' /*"Region Nord",*/,
     language: 'french' /*"english",*/,
+    picture: 'https://via.placeholder.com/150',
+    description: 'lorem imsum dolor blabla',
   },
 ];
 
@@ -64,13 +71,14 @@ function App() {
       lastname={single.lastname}
       disponibility={single.disponibility}
       picture={single.picture}
+      description={single.description}
     />
   ));
   return (
     <div className="App">
       {/* <Header /> */}
       <Public />
-      {listCard}
+      <div className="ListCard">{listCard}</div>
       {/* <Footer /> */}
     </div>
   );
