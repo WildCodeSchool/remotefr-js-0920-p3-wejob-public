@@ -1,6 +1,6 @@
 import React from 'react';
 import './ListUsers.css';
-import SingleUser from './SingleUser';
+import SingleUserShort from './SingleUserShort';
 
 const users = [
   {
@@ -197,7 +197,7 @@ const users = [
 
 export default function ListUsers() {
   const listUsers = users.map((user) => (
-    <SingleUser
+    <SingleUserShort
       key={user.id}
       firstname={user.firstname}
       lastname={user.lastname}

@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       {/* <Header /> */}
       <Public />
-      <div className="ListCard">
+      <div className="Listuser">
         <ListUsers />
       </div>
       {/* <Footer /> */}

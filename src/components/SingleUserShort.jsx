@@ -1,5 +1,5 @@
 import React from 'react';
-import './SingleUser.css';
+import './SingleUserShort.css';
 
 export default function SingleUser(props) {
   return (
