@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './SingleUserFull.css';
+
 const users = [
   {
     id: 0,
@@ -194,6 +196,7 @@ const users = [
 ];
 
 export default function SingleUserFull(props) {
+  // eslint-disable-next-line
   const current_user = users.find((user) => user.id == props.match.params.id);
 
   return (
