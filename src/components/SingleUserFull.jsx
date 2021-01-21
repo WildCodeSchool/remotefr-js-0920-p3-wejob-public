@@ -1,81 +1,277 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+const users = [
+  {
+    id: 0,
+    lastname: 'Wagner',
+    firstname: 'Christian',
+    description:
+      'Je suis conducteur de poids lours et je cherche un travail dans toute la france',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 1,
+    firstname: 'Jack',
+    lastname: 'Newman',
+    description: 'Pilote de ligne',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 2,
+    firstname: 'Edna',
+    lastname: 'Hale',
+    description: 'Caissière',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 3,
+    firstname: 'Martin',
+    lastname: 'Francois',
+    description: 'Acteur',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 4,
+    firstname: 'Simon',
+    lastname: 'Levy',
+    description: 'Réalisateur',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 5,
+    firstname: 'Mohamed',
+    lastname: 'Hatal',
+    description: 'Chomeur',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 6,
+    firstname: 'Sarah',
+    lastname: 'Pitzkowsky',
+    description: 'Carriste',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 7,
+    firstname: 'Martine',
+    lastname: 'Azau',
+    description: 'Animateur pour enfant',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+  {
+    id: 8,
+    firstname: 'Zinedine',
+    lastname: 'Zidane',
+    description: 'Clown',
+    diploma: 'ingenier',
+    activity_area_id: 1,
+    awailability: 2,
+    mobility: 1000,
+    years_of_experiment: 10,
+    password: 'EgTTOgnze46648',
+    mail: 'martin@hotmail.fr',
+    statut: 'online',
+    create_at: '26/05/1999',
+    update_at: '29/05/1999',
+    open_to_formation: 'yes',
+    cv: 'fichier.pdf',
+    linkedin: 'lien.com',
+    youtube: 'lien.com',
+    picture: 'https://via.placeholder.com/150',
+  },
+];
 
 export default function SingleUserFull(props) {
+  const current_user = users.find((user) => user.id == props.match.params.id);
+
   return (
     <div className="Full">
+      <Link to="/">Retour</Link>
       <h1>
-        {props.firstname} {props.lastname}
+        {current_user.firstname} {current_user.lastname}
       </h1>
       <div>
-        <img src={props.picture} alt={props.lastname} />
+        <img src={current_user.picture} alt={current_user.lastname} />
       </div>
 
       <ul className="marker">
-        {props.description && (
+        {current_user.description && (
           <li>
             <strong>Description: </strong>
-            {props.description}
+            {current_user.description}
           </li>
         )}
 
-        {props.diploma && (
+        {current_user.diploma && (
           <li>
             <strong>Diploma: </strong>
-            {props.diploma}
+            {current_user.diploma}
           </li>
         )}
-        {props.activity_area_id && (
+        {current_user.activity_area_id && (
           <li>
             <strong>activity_area_id: </strong>
-            {props.activity_area_id}
+            {current_user.activity_area_id}
           </li>
         )}
-        {props.awailability && (
+        {current_user.awailability && (
           <li>
             <strong>Awailability: </strong>
-            {props.awailability}
+            {current_user.awailability}
           </li>
         )}
-        {props.mobility && (
+        {current_user.mobility && (
           <li>
             <strong>Mobility: </strong>
-            {props.mobility}
+            {current_user.mobility}
           </li>
         )}
-        {props.years_of_experiment && (
+        {current_user.years_of_experiment && (
           <li>
             <strong>Years of experiment: </strong>
-            {props.years_of_experiment}
+            {current_user.years_of_experiment}
           </li>
         )}
-        {props.mail && (
+        {current_user.mail && (
           <li>
             <strong>Mail: </strong>
-            {props.mail}
+            {current_user.mail}
           </li>
         )}
-        {props.open_to_formation && (
+        {current_user.open_to_formation && (
           <li>
             <strong>Open to formation: </strong>
-            {props.open_to_formation}
+            {current_user.open_to_formation}
           </li>
         )}
-        {props.cv && (
+        {current_user.cv && (
           <li>
             <strong>CV: </strong>
-            {props.cv}
+            {current_user.cv}
           </li>
         )}
-        {props.linkedin && (
+        {current_user.linkedin && (
           <li>
             <strong>Linkedin: </strong>
-            {props.linkedin}
+            {current_user.linkedin}
           </li>
         )}
-        {props.youtube && (
+        {current_user.youtube && (
           <li>
             <strong>Youtube: </strong>
-            {props.youtube}
+            {current_user.youtube}
           </li>
         )}
       </ul>
