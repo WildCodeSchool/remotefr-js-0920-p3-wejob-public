@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
 import Public from './components/Public';
 import ListUsers from './components/ListUsers';
@@ -7,9 +8,13 @@ function App() {
   return (
     <div className="App">
       {/* <Header /> */}
-      <Public />
-      <div className="Listuser">
-        <ListUsers />
+      <div className="Homepage">
+        <Public />
+        <Route>
+          <div className="Listuser">
+            <ListUsers />
+          </div>
+        </Route>
       </div>
       {/* <Footer /> */}
     </div>
