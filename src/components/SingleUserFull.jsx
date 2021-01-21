@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function FullDescription(props) {
+export default function SingleUserFull(props) {
   return (
     <div className="Full">
       <h1>
