@@ -11,9 +11,7 @@ function App() {
       <div className="Homepage">
         <Public />
         <Route>
-          <div className="Listuser">
-            <ListUsers />
-          </div>
+          <ListUsers />
         </Route>
       </div>
       {/* <Footer /> */}
