@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Deroulant from './Deroulant';
 import './Public.css';
 
 const wait = function (duration = 1000) {
@@ -24,7 +25,9 @@ export default function Public() {
       <h1>Trouver votre candidat idéal</h1>
       <div className="row">
         <div className="boxForm">
-          <label htmlFor="keyResearch">Recherche par mots clés</label>
+          <label className="recherche" htmlFor="keyResearch">
+            Recherche par mots clés
+          </label>
           <input
             type="text"
             className="researchKey"
@@ -36,15 +39,7 @@ export default function Public() {
           {errors.keyResearch && <span>{errors.keyResearch.message}</span>}
         </div>
         <div className="boxForm">
-          <label htmlFor="place">Lieu</label>
-          <input
-            type="text"
-            className="researchPlace"
-            id="place"
-            name="place"
-            ref={register}
-            // defaultValue="Bordeaux, Gironde, Nouvelle Aquitaine, France"
-          />
+          <Deroulant />
         </div>
         <button disabled={isSubmitting} type="submit">
           Valider

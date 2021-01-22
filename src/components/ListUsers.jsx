@@ -8,7 +8,7 @@ const users = [
     lastname: 'Wagner',
     firstname: 'Christian',
     description:
-      'Je suis conducteur de poids lours et je cherche un travail dans toute la france',
+      'Je suis conducteur de poids lourds et je cherche un travail dans toute la france',
     diploma: 'ingenier',
     activity_area_id: 1,
     awailability: 2,

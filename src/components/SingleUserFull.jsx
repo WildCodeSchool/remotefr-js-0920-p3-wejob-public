@@ -231,7 +231,7 @@ export default function SingleUserFull(props) {
         )}
         {current_user.awailability && (
           <li>
-            <strong>Awailability: </strong>
+            <strong>Availability: </strong>
             {current_user.awailability}
           </li>
         )}
@@ -249,7 +249,7 @@ export default function SingleUserFull(props) {
         )}
         {current_user.mail && (
           <li>
-            <strong>Mail: </strong>
+            <strong>Email: </strong>
             {current_user.mail}
           </li>
         )}
