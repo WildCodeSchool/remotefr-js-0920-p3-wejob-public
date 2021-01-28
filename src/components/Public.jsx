@@ -2,22 +2,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import './Public.css';
 
-const wait = function (duration = 1000) {
-  return new Promise((resolve) => {
-    window.setTimeout(resolve, duration);
-  });
-};
-
-export default function Public() {
+export default function Public({ handleKeyWords }) {
   const { register, handleSubmit, formState, errors } = useForm();
   const { isSubmitting } = formState;
 
   const onSubmit = async (data) => {
-    await wait(2000);
-    console.log(data);
+    handleKeyWords(data.keyResearch);
   };
 
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <form className="champsRecherche" onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +25,7 @@ export default function Public() {
             className="researchKey"
             id="keyResearch"
             name="keyResearch"
-            ref={register({ required: 'Vous devez remplir ce champs' })}
+            ref={register}
             // defaultValue="Métier, Secteur d'activité, Description, Compétences, Langues"
           />
           {errors.keyResearch && <span>{errors.keyResearch.message}</span>}

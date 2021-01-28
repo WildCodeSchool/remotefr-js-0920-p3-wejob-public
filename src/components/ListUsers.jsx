@@ -24,6 +24,7 @@ const users = [
     linkedin: 'lien.com',
     youtube: 'lien.com',
     picture: 'https://via.placeholder.com/150',
+    keyWords: 'filtre1;filtre2;filtre3',
   },
   {
     id: 1,
@@ -46,6 +47,7 @@ const users = [
     linkedin: 'lien.com',
     youtube: 'lien.com',
     picture: 'https://via.placeholder.com/150',
+    keyWords: 'filtre1;filtre2;',
   },
   {
     id: 2,
@@ -203,10 +205,20 @@ const users = [
   },
 ];
 
-export default function ListUsers() {
-  const listUsers = users.map((user) => (
-    <SingleUserShort key={user.id} user={user} />
-  ));
-
-  return <div className="listUsers">{listUsers}</div>;
+export default function ListUsers({ keyWords }) {
+  console.log('keyWords LU : ', keyWords);
+  return (
+    <div className="listUsers">
+      {keyWords
+        ? users
+            .filter(
+              (u) =>
+                u.keyWords &&
+                (u.keyWords.toLowerCase().includes(keyWords.toLowerCase()) ||
+                  u.job.toLowerCase().includes(keyWords.toLowerCase())),
+            )
+            .map((user) => <SingleUserShort key={user.id} user={user} />)
+        : users.map((user) => <SingleUserShort key={user.id} user={user} />)}
+    </div>
+  );
 }
