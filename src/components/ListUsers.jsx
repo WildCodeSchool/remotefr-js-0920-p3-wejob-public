@@ -215,7 +215,11 @@ export default function ListUsers({ keyWords }) {
               (u) =>
                 u.keyWords &&
                 (u.keyWords.toLowerCase().includes(keyWords.toLowerCase()) ||
-                  u.job.toLowerCase().includes(keyWords.toLowerCase())),
+                  u.job.toLowerCase().includes(keyWords.toLowerCase()) ||
+                  u.description
+                    .toLowerCase()
+                    .includes(keyWords.toLowerCase()) ||
+                  u.language.toLowerCase().includes(keyWords.toLowerCase())),
             )
             .map((user) => <SingleUserShort key={user.id} user={user} />)
         : users.map((user) => <SingleUserShort key={user.id} user={user} />)}

@@ -10,8 +10,6 @@ export default function Public({ handleKeyWords }) {
     handleKeyWords(data.keyResearch);
   };
 
-  // console.log(errors);
-
   return (
     <form className="champsRecherche" onSubmit={handleSubmit(onSubmit)}>
       <h1>Trouver votre candidat idéal</h1>
@@ -26,7 +24,6 @@ export default function Public({ handleKeyWords }) {
             id="keyResearch"
             name="keyResearch"
             ref={register}
-            // defaultValue="Métier, Secteur d'activité, Description, Compétences, Langues"
           />
           {errors.keyResearch && <span>{errors.keyResearch.message}</span>}
         </div>
