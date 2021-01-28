@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Deroulant from './Deroulant';
 import './Public.css';
 
 const wait = function (duration = 1000) {
@@ -38,9 +37,7 @@ export default function Public() {
           />
           {errors.keyResearch && <span>{errors.keyResearch.message}</span>}
         </div>
-        <div className="boxForm">
-          <Deroulant />
-        </div>
+
         <button disabled={isSubmitting} type="submit">
           Valider
         </button>
