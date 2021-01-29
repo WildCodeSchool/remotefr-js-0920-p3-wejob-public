@@ -9,7 +9,6 @@ function App() {
   const [keyWords, setKeyWords] = useState('');
   return (
     <div className="App">
-      {/* <Header /> */}
       <div className="Homepage">
         <Public handleKeyWords={setKeyWords} />
         <Route exact path="/">
@@ -17,7 +16,6 @@ function App() {
         </Route>
         <Route exact path="/user/:id" component={SingleUserFull} />
       </div>
-      {/* <Footer /> */}
     </div>
   );
 }

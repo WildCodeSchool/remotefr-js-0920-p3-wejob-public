@@ -1,8 +1,10 @@
 import React from 'react';
 import './SingleUserShort.css';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import axios from 'axios';
+import useState from 'react-hook-use-state';
 
 export default function SingleUser(props) {
   const { user } = props;
@@ -11,16 +13,23 @@ export default function SingleUser(props) {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    const data = {
-      name: name,
-      email: email,
-      phone: phone,
-    };
-    axios.post('/api', data).then;
-  };
+  // const data = {
+  //   name: name,
+  //   email: email,
+  //   phone: phone,
+  // };
+
+  //   axios
+  //     .post(`${process.env.REACT_APP_BACK_URL}/recruteur`, data)
+  //     .then((response) => {
+  //       history.push(`/user/${user.id}`).catch((error) => {
+  //         console.log(error.message);
+  //       });
+  //     });
+  // };
 
   return (
     <div className="Card">
