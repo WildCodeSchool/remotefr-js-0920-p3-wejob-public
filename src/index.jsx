@@ -4,7 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 // import './index.css';
 import App from './App';
 
-const basename = window.location.pathname.replace(/\/?$/, '');
+const isProd = process.env.NODE_ENV === 'production';
+const basename = isProd ? window.location.pathname.replace(/\/?$/, '') : '/';
 
 ReactDOM.render(
   <React.StrictMode>
