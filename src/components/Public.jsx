@@ -1,17 +1,21 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import './Public.css';
 
 export default function Public({ handleKeyWords }) {
-  const { register, handleSubmit, formState, errors } = useForm();
-  const { isSubmitting } = formState;
+  // const { register, handleSubmit, formState, errors } = useForm();
+  // const { isSubmitting } = formState;
 
-  const onSubmit = async (data) => {
-    handleKeyWords(data.keyResearch);
-  };
+  // const onSubmit = async (data) => {
+  //   handleKeyWords(data.keyResearch);
+  // };
+  const isSubmitting = false;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
   return (
-    <form className="champsRecherche" onSubmit={handleSubmit(onSubmit)}>
+    <form className="champsRecherche" onSubmit={handleSubmit}>
       <h1>Trouver votre candidat idéal</h1>
       <div className="row">
         <div className="boxForm">
@@ -23,9 +27,7 @@ export default function Public({ handleKeyWords }) {
             className="researchKey"
             id="keyResearch"
             name="keyResearch"
-            ref={register}
           />
-          {errors.keyResearch && <span>{errors.keyResearch.message}</span>}
         </div>
 
         <button disabled={isSubmitting} type="submit">

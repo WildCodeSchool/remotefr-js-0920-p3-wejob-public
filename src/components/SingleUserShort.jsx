@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SingleUserShort.css';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
