@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SingleUserShort.css';
-import { useHistory } from 'react-router-dom';
-import Popup from 'reactjs-popup';
+import { useHistory, Link } from 'react-router-dom';
+// import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import axios from 'axios';
+// import axios from 'axios';
 
 export default function SingleUser(props) {
   const { user } = props;
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [phone, setPhone] = useState('');
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -39,7 +39,7 @@ export default function SingleUser(props) {
       <img className="ProfileImg" src={user.picture} alt={user.id} />
       <h3>{user.job}</h3>
       <h3>{user.description}</h3>
-      <Popup
+      {/* <Popup
         trigger={<button>En savoir plus sur ce candidat</button>}
         position="right center"
       >
@@ -82,13 +82,21 @@ export default function SingleUser(props) {
               size="10"
               value={phone}
             ></input>
-            {/* < to={`/user/${user.id}`} key={user.id}> */}
+            
             <button id="btnSeeMore" type="submit" className="btnSeeMore">
               Ok
             </button>
           </div>
         </form>
-      </Popup>
+      </Popup> */}
+      <Link
+        id="btnSeeMore"
+        className="btnSeeMore"
+        to={`/user/${user.id}`}
+        key={user.id}
+      >
+        En savoir plus sur ce candidat
+      </Link>
     </div>
   );
 }
