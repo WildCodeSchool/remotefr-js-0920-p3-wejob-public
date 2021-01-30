@@ -13,36 +13,27 @@
   "bugs": {
     "url": "https://github.com/WildCodeSchool/remotefr-js-0920-p3-wejob-public/issues"
   },
-  "homepage": "https://github.com/WildCodeSchool/remotefr-js-0920-p3-wejob-public#readme",
+  "private": true,
   "scripts": {
-    "start": "parcel public/index.html --port 3000",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "start:wp": "parcel public/index-wp-plugin.html",
     "lint": "eslint --ext .js,.jsx --fix src/",
     "prettify": "prettier --write src/"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta1",
     "object-assign": "^4.1.1",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-error-boundary": "^3.1.0",
     "react-hook-form": "^6.13.1",
-    "react-hook-use-state": "^1.1.0",
     "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.4",
     "react-select": "^3.2.0",
     "reactjs-popup": "^2.0.4",
     "regenerator-runtime": "^0.13.7",
@@ -62,6 +53,18 @@
     "lint-staged": "^10.4.2",
     "parcel-bundler": "^1.12.4",
     "prettier": "^2.1.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [

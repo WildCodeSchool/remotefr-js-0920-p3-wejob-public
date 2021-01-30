@@ -1,107 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="stylesheet" href="ample-theme.css" />
-  <title>WeJob</title>
-</head>
-
-<body
-  class="page-template page-template-page-no-sidebar page-template-page-no-sidebar-php page page-id-2909 page-child parent-pageid-1046 logged-in admin-bar no-customize-support wp-custom-logo  better-responsive-menu wide">
-  <div id="page" class="hfeed site">
-    <header id="masthead" class="site-header " role="banner">
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <!-- CSS only -->
+    <link href="/ample.css" rel="stylesheet">
+    <title>React App</title>
+  </head>
+  <body
+    class="page-template page-template-page-no-sidebar page-template-page-no-sidebar-php page page-id-2909 page-child parent-pageid-1046 logged-in admin-bar no-customize-support wp-custom-logo better-responsive-menu wide"
+  >
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <header id="masthead" class="site-header">
       <div class="header">
-
         <div class="main-head-wrap inner-wrap clearfix">
           <div id="header-left-section">
-
             <div id="header-logo-image">
-              <a href="https://wejob.wild31.com/" class="custom-logo-link" rel="home" itemprop="url"><img width="200"
-                  height="120" src="https://wejob.wild31.com/wp-content/uploads/2017/07/WeJob_logo.png"
-                  class="custom-logo" alt="WeJob logo" itemprop="logo" /></a>
-            </div><!-- #header-logo-image -->
+              <a
+                href="https://wejob.wild31.com/"
+                class="custom-logo-link"
+                rel="home"
+                ><img
+                  width="200"
+                  height="120"
+                  src="https://wejob.wild31.com/wp-content/uploads/2017/07/WeJob_logo.png"
+                  class="custom-logo"
+                  alt="WeJob logo"
+              /></a>
+            </div>
+            <!-- #header-logo-image -->
 
             <div id="header-text" class="screen-reader-text">
               <h3 id="site-title">
-                <a href="https://wejob.wild31.com/" title="WeJOB" rel="home">WeJOB</a>
+                <a href="https://wejob.wild31.com/" title="WeJOB" rel="home"
+                  >WeJOB</a
+                >
               </h3>
-              <p id="site-description">Innovation Ressources Humaines &amp; Emploi à Bordeaux</p>
+              <p id="site-description">
+                Innovation Ressources Humaines &amp; Emploi à Bordeaux
+              </p>
             </div>
-          </div><!-- #header-left-section -->
+          </div>
+          <!-- #header-left-section -->
 
           <div id="header-right-section">
-            <nav id="site-navigation" class="main-navigation" role="navigation">
+            <nav id="site-navigation" class="main-navigation">
               <p class="menu-toggle"></p>
               <div class="menu-menu-1-container">
                 <ul id="menu-menu-1" class="menu menu-primary-container">
-                  <li id="menu-item-991"
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-991">
-                    <a href="https://wejob.wild31.com/solution-recherche-emploi-aquitaine/">Projet
-                      professionnel/Emploi</a>
+                  <li
+                    id="menu-item-991"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-991"
+                  >
+                    <a
+                      href="https://wejob.wild31.com/solution-recherche-emploi-aquitaine/"
+                      >Projet professionnel/Emploi</a
+                    >
                   </li>
-                  <li id="menu-item-1225"
-                    class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-1225">
-                    <a href="https://wejob.wild31.com/prestations-aux-entreprises/">Prestations RH aux entreprises</a>
+                  <li
+                    id="menu-item-1225"
+                    class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-1225"
+                  >
+                    <a
+                      href="https://wejob.wild31.com/prestations-aux-entreprises/"
+                      >Prestations RH aux entreprises</a
+                    >
                     <ul class="sub-menu">
-                      <li id="menu-item-2913"
-                        class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2909 current_page_item menu-item-2913">
-                        <a href="https://wejob.wild31.com/prestations-aux-entreprises/base-de-donnees-candidats/"
-                          aria-current="page">Base de données candidats</a>
+                      <li
+                        id="menu-item-2913"
+                        class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2909 current_page_item menu-item-2913"
+                      >
+                        <a
+                          href="https://wejob.wild31.com/prestations-aux-entreprises/base-de-donnees-candidats/"
+                          aria-current="page"
+                          >Base de données candidats</a
+                        >
                       </li>
                     </ul>
                   </li>
-                  <li id="menu-item-112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-112">
-                    <a href="https://wejob.wild31.com/actualites/">Evènements / Actualités</a>
+                  <li
+                    id="menu-item-112"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-112"
+                  >
+                    <a href="https://wejob.wild31.com/actualites/"
+                      >Evènements / Actualités</a
+                    >
                   </li>
+                  <li
+                    id="menu-item-47"
+                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-47"
+                  >
+                    <a href="http://wejob.wild31.com/lequipe/"
+                      >WeJOB &#038; Vous</a
+                    >
                   </li>
-                  <li id="menu-item-48" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48"><a
-                      href="https://wejob.wild31.com/contact/">Contactez-nous</a></li>
+                  <li
+                    id="menu-item-48"
+                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48"
+                  >
+                    <a href="https://wejob.wild31.com/contact/"
+                      >Contactez-nous</a
+                    >
+                  </li>
                 </ul>
               </div>
             </nav>
             <i class="fa fa-search search-top"></i>
             <div class="search-form-top">
-
-              <form action="https://wejob.wild31.com/" class="search-form searchform clearfix" method="get">
+              <form
+                action="https://wejob.wild31.com/"
+                class="search-form searchform clearfix"
+                method="get"
+              >
                 <div class="search-wrap">
-                  <input type="text" placeholder="Recherche" class="s field" name="s">
+                  <input
+                    type="text"
+                    placeholder="Recherche"
+                    class="s field"
+                    name="s"
+                  />
                   <button class="search-icon" type="submit"></button>
                 </div>
-              </form><!-- .searchform -->
+              </form>
+              <!-- .searchform -->
             </div>
           </div>
-        </div><!-- .main-head-wrap -->
-      </div><!-- .header -->
-    </header><!-- end of header -->
+        </div>
+        <!-- .main-head-wrap -->
+      </div>
+      <!-- .header -->
+    </header>
+    <!-- end of header -->
     <div class="main-wrapper">
-
       <div class="header-post-title-container clearfix">
         <div class="inner-wrap">
           <div class="post-title-wrapper">
-            <h1 class="header-post-title-class entry-title">Base de données candidats</h1>
+            <h1 class="header-post-title-class entry-title">
+              Base de données candidats
+            </h1>
           </div>
         </div>
       </div>
 
       <div class="single-page clearfix">
         <div class="inner-wrap">
-
-          <noscript>You need to enable JavaScript to run this app.</noscript>
           <div id="root"></div>
-          <script src="../src/index.jsx"></script>
-
-        </div><!-- .inner-wrap -->
-      </div><!-- .single-page -->
-
-    </div><!-- .main-wrapper -->
-    <a href="#masthead" id="scroll-up"><i class="fa fa-angle-up"></i></a>
-  </div><!-- #page -->
-
-</body>
-
+        </div>
+        <!-- .inner-wrap -->
+      </div>
+      <!-- .single-page -->
+    </div>
+  </body>
 </html>

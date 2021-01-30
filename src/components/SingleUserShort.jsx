@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SingleUserShort.css';
 import { useHistory } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import axios from 'axios';
-import useState from 'react-hook-use-state';
 
 export default function SingleUser(props) {
   const { user } = props;

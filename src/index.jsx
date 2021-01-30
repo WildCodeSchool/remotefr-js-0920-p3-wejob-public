@@ -1,3 +1,4 @@
+import regeneratorRuntime from 'regenerator-runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -20,9 +21,7 @@ function ErrorFallback({ error, resetErrorBoundary }) {
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter basename={basename}>
-      <ErrorBoundary
-        FallbackComponent={ErrorFallback}
-      >
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
         <App />
       </ErrorBoundary>
     </BrowserRouter>
