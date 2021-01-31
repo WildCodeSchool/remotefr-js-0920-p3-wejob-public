@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import './index.css';
 import App from './App';
-import AuthContext from './components/AuthContext';
 
 const isProd = process.env.NODE_ENV === 'production';
 const basename = isProd ? window.location.pathname.replace(/\/?$/, '') : '/';
@@ -19,21 +18,12 @@ function ErrorFallback({ error, resetErrorBoundary }) {
   );
 }
 
-const [user, setUser] = useState({
-  id: 1,
-  name: 'john Doe',
-  email: 'martin@ht.com',
-  phone: '0666666666',
-});
-
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter basename={basename}>
-      <AuthContext.Provider value={{ user: user }}>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <App />
-        </ErrorBoundary>
-      </AuthContext.Provider>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <App />
+      </ErrorBoundary>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
