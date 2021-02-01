@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ListUsers.css';
-import SingleUserShort from './SingleUserShort';
 import axios from 'axios';
+import SingleUserShort from './SingleUserShort';
 
 export default function ListUsers({ keyWords }) {
   console.log('keyWords LU : ', keyWords);
@@ -14,7 +14,7 @@ export default function ListUsers({ keyWords }) {
   }, []);
 
   return (
-    <div className="listUsers">
+    <div className="listUsers row">
       {keyWords
         ? candidats
             .filter(
@@ -28,10 +28,14 @@ export default function ListUsers({ keyWords }) {
                   u.language.toLowerCase().includes(keyWords.toLowerCase())),
             )
             .map((candidat) => (
-              <SingleUserShort key={candidat.id} candidat={candidat} />
+              <div key={candidat.id} className="col-md-4">
+                <SingleUserShort candidat={candidat} />
+              </div>
             ))
         : candidats.map((candidat) => (
-            <SingleUserShort key={candidat.id} candidat={candidat} />
+            <div key={candidat.id} className="col-md-4">
+              <SingleUserShort candidat={candidat} />
+            </div>
           ))}
     </div>
   );
