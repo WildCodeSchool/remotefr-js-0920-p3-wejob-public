@@ -30,7 +30,9 @@ export default function SingleUser(props) {
               </Link>
             </h5>
             <p className="card-text">
-              {candidat.job.split(';')[0].replace('.', '').substr(0, 50)}
+              {candidat.job.split(';').map((job, idx) => <span key={idx} className="badge bg-primary">
+                {job}
+              </span>)}
             </p>
             <p className="card-text">
               {/* {candidat.sector_of_activity.map((sector) => <span key={sector.id_sector}>{sector.name_sector}</span>)} */}

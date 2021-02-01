@@ -8,19 +8,22 @@ export default function ListUsers({ keyWords }) {
   console.log('keyWords LU : ', keyWords);
   const candidats = useContext(CandidatesContext);
 
+  const keylow = keyWords.toLowerCase();
+
   return (
     <div className="listUsers row">
       {keyWords
         ? candidats
             .filter(
               (u) =>
-                u.keyWords &&
-                (u.keyWords.toLowerCase().includes(keyWords.toLowerCase()) ||
-                  u.job.toLowerCase().includes(keyWords.toLowerCase()) ||
-                  u.description
-                    .toLowerCase()
-                    .includes(keyWords.toLowerCase()) ||
-                  u.language.toLowerCase().includes(keyWords.toLowerCase())),
+                // u.keywords?.toLowerCase().includes(keylow) ||
+                u.job.split(';')[0]?.toLowerCase().includes(keylow) || false
+                // u.description?.toLowerCase().includes(keylow) ||
+                // u.language
+                //   .map((l) => l.lang)
+                //   .join(';')
+                //   .toLowerCase()
+                //   .includes(keylow),
             )
             .map((candidat) => (
               <div key={candidat.id} className="col-md-4">
