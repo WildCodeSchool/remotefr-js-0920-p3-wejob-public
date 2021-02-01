@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import './ListUsers.css';
 import axios from 'axios';
 import SingleUserShort from './SingleUserShort';
+import CandidatesContext from '../contexts/candidates';
 
 export default function ListUsers({ keyWords }) {
   console.log('keyWords LU : ', keyWords);
-
-  const [candidats, setCandidats] = useState([]);
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/candidats`).then((response) => {
-      setCandidats(response.data);
-    });
-  }, []);
+  const candidats = useContext(CandidatesContext);
 
   return (
     <div className="listUsers row">

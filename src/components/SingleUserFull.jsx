@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './SingleUserFull.css';
 import axios from 'axios';
+import './SingleUserFull.css';
+import AuthContext from './AuthContext';
+import RecruiterForm from './RecruiterForm';
 
 export default function SingleUserFull(props) {
+  const { user, setUser } = useContext(AuthContext);
   // eslint-disable-next-line
   // const current_user = users.find((user) => user.id == props.match.params.id);
 
@@ -14,12 +18,17 @@ export default function SingleUserFull(props) {
   // );
 
   useEffect(() => {
+    if (!user) return;
     axios
       .get(`${process.env.REACT_APP_API_URL}/candidats/${props.match.params.id}`)
       .then((response) => {
         setCandidat(response.data[0]);
       });
-  }, []);
+  }, [user]);
+
+  if (!user) {
+    return <RecruiterForm setUser={setUser} />
+  }
 
   if (!candidat) {
     return <p>Loading</p>;
