@@ -9,9 +9,12 @@ function RecruiterForm({ setUser }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const recruiter = { name, email, phone };
-    axios.post(`${process.env.REACT_APP_API_URL}/recruteurs`, recruiter)
-      .then(() => setUser(recruiter))
-  }
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/recruteurs`, recruiter, {
+        withCredentials: true,
+      })
+      .then(() => setUser(recruiter));
+  };
   return (
     <form onSubmit={handleSubmit}>
       <div>

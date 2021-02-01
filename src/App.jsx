@@ -15,9 +15,11 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/recruteurs/check`)
+      .get(`${process.env.REACT_APP_API_URL}/recruteurs/check`, {
+        withCredentials: true,
+      })
       .then((res) => {
-        setUser(res.data);
+        setUser(res.data.status);
       });
   }, []);
 
@@ -30,15 +32,15 @@ function App() {
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <CandidatesContext.Provider value={candidats}>
-      <div className="App container">
-        <div className="Homepage">
-          <Route exact path="/">
-            <Public handleKeyWords={setKeyWords} />
-            <ListUsers keyWords={keyWords} />
-          </Route>
-          <Route exact path="/candidat/:id" component={SingleUserFull} />
+        <div className="App container">
+          <div className="Homepage">
+            <Route exact path="/">
+              <Public handleKeyWords={setKeyWords} />
+              <ListUsers keyWords={keyWords} />
+            </Route>
+            <Route exact path="/candidat/:id" component={SingleUserFull} />
+          </div>
         </div>
-      </div>
       </CandidatesContext.Provider>
     </AuthContext.Provider>
   );
