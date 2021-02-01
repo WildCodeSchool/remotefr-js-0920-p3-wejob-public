@@ -1,280 +1,103 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './SingleUserFull.css';
-
-const users = [
-  {
-    id: 0,
-    lastname: 'Wagner',
-    firstname: 'Christian',
-    description:
-      'Je suis conducteur de poids lours et je cherche un travail dans toute la france',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 1,
-    firstname: 'Jack',
-    lastname: 'Newman',
-    description: 'Pilote de ligne',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 2,
-    firstname: 'Edna',
-    lastname: 'Hale',
-    description: 'Caissière',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 3,
-    firstname: 'Martin',
-    lastname: 'Francois',
-    description: 'Acteur',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 4,
-    firstname: 'Simon',
-    lastname: 'Levy',
-    description: 'Réalisateur',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 5,
-    firstname: 'Mohamed',
-    lastname: 'Hatal',
-    description: 'Chomeur',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 6,
-    firstname: 'Sarah',
-    lastname: 'Pitzkowsky',
-    description: 'Carriste',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 7,
-    firstname: 'Martine',
-    lastname: 'Azau',
-    description: 'Animateur pour enfant',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 8,
-    firstname: 'Zinedine',
-    lastname: 'Zidane',
-    description: 'Clown',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-];
+import axios from 'axios';
 
 export default function SingleUserFull(props) {
   // eslint-disable-next-line
-  const current_user = users.find((user) => user.id == props.match.params.id);
+  // const current_user = users.find((user) => user.id == props.match.params.id);
+
+  const current_candidat = candidats.find(
+    (candidat) => candidat.id == props.match.params.id,
+  );
+  console.log(props.match.params.id, current_candidat);
+
+  const [candidats, setCandidats] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/candidats/${current_candidat.id}`)
+      .then((response) => {
+        setCandidats(response.data);
+      });
+  });
 
   return (
     <div className="Full">
       <Link to="/">Retour</Link>
       <h1>
-        {current_user.firstname} {current_user.lastname}
+        {current_candidat.firstname} {current_candidat.lastname}
       </h1>
       <div>
-        <img src={current_user.picture} alt={current_user.lastname} />
+        <img src={current_candidat.picture} alt={current_candidat.lastname} />
       </div>
 
       <ul className="marker">
-        {current_user.description && (
+        {current_candidat.description && (
           <li>
             <strong>Description: </strong>
-            {current_user.description}
+            {current_candidat.description}
           </li>
         )}
 
-        {current_user.diploma && (
+        {current_candidat.diploma && (
           <li>
             <strong>Diploma: </strong>
-            {current_user.diploma}
+            {current_candidat.diploma}
           </li>
         )}
-        {current_user.activity_area_id && (
+        {current_candidat.activity_area_id && (
           <li>
             <strong>activity_area_id: </strong>
-            {current_user.activity_area_id}
+            {current_candidat.activity_area_id}
           </li>
         )}
-        {current_user.awailability && (
+        {current_candidat.awailability && (
           <li>
             <strong>Availability: </strong>
-            {current_user.awailability}
+            {current_candidat.awailability}
           </li>
         )}
-        {current_user.mobility && (
+        {current_candidat.mobility && (
           <li>
             <strong>Mobility: </strong>
-            {current_user.mobility}
+            {current_candidat.mobility}
           </li>
         )}
-        {current_user.years_of_experiment && (
+        {current_candidat.years_of_experiment && (
           <li>
             <strong>Years of experiment: </strong>
-            {current_user.years_of_experiment}
+            {current_candidat.years_of_experiment}
           </li>
         )}
-        {current_user.mail && (
+        {current_candidat.mail && (
           <li>
             <strong>Email: </strong>
-            {current_user.mail}
+            {current_candidat.mail}
           </li>
         )}
-        {current_user.open_to_formation && (
+        {current_candidat.open_to_formation && (
           <li>
             <strong>Open to formation: </strong>
-            {current_user.open_to_formation}
+            {current_candidat.open_to_formation}
           </li>
         )}
-        {current_user.cv && (
+        {current_candidat.cv && (
           <li>
             <strong>CV: </strong>
-            {current_user.cv}
+            {current_candidat.cv}
           </li>
         )}
-        {current_user.linkedin && (
+        {current_candidat.linkedin && (
           <li>
             <strong>Linkedin: </strong>
-            {current_user.linkedin}
+            {current_candidat.linkedin}
           </li>
         )}
-        {current_user.youtube && (
+        {current_candidat.youtube && (
           <li>
             <strong>Youtube: </strong>
-            {current_user.youtube}
+            {current_candidat.youtube}
           </li>
         )}
       </ul>

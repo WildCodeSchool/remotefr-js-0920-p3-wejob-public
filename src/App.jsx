@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import Public from './components/Public';
 import ListUsers from './components/ListUsers';
 import SingleUserFull from './components/SingleUserFull';
 import AuthContext from './components/AuthContext';
+import axios from 'axios';
 
 function App() {
   const [keyWords, setKeyWords] = useState('');
@@ -12,7 +13,7 @@ function App() {
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACK_URL}/recruteur/check`)
-      .then((response) => {
+      .then((res) => {
         setUser(res.data);
       });
   }, []);

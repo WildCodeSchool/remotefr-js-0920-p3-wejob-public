@@ -1,216 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ListUsers.css';
 import SingleUserShort from './SingleUserShort';
-
-const users = [
-  {
-    id: 0,
-    lastname: 'Wagner',
-    firstname: 'Christian',
-    job: 'Chauffeur poids lourds',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-    keyWords: 'filtre1;filtre2;filtre3',
-  },
-  {
-    id: 1,
-    firstname: 'Jack',
-    lastname: 'Newman',
-    job: 'Pilote de ligne',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-    keyWords: 'filtre1;filtre2;',
-  },
-  {
-    id: 2,
-    firstname: 'Edna',
-    lastname: 'Hale',
-    job: 'Caissière',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 3,
-    firstname: 'Martin',
-    lastname: 'Francois',
-    job: 'Acteur',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 4,
-    firstname: 'Simon',
-    lastname: 'Levy',
-    job: 'Réalisateur',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 5,
-    firstname: 'Mohamed',
-    lastname: 'Hatal',
-    job: 'Chomeur',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 6,
-    firstname: 'Sarah',
-    lastname: 'Pitzkowsky',
-    job: 'Carriste',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 7,
-    firstname: 'Martine',
-    lastname: 'Azau',
-    job: 'Animateur pour enfant',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-  {
-    id: 8,
-    firstname: 'Zinedine',
-    lastname: 'Zidane',
-    job: 'Clown',
-    description: 'Motivé et consciencieux',
-    diploma: 'ingenier',
-    activity_area_id: 1,
-    awailability: 2,
-    mobility: 1000,
-    years_of_experiment: 10,
-    password: 'EgTTOgnze46648',
-    mail: 'martin@hotmail.fr',
-    statut: 'online',
-    create_at: '26/05/1999',
-    update_at: '29/05/1999',
-    open_to_formation: 'yes',
-    cv: 'fichier.pdf',
-    linkedin: 'lien.com',
-    youtube: 'lien.com',
-    picture: 'https://via.placeholder.com/150',
-  },
-];
+import axios from 'axios';
 
 export default function ListUsers({ keyWords }) {
   console.log('keyWords LU : ', keyWords);
+
+  const [candidats, setCandidats] = useState([]);
+  console.log(candidats);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/candidats`).then((response) => {
+      setCandidats(response.data);
+    });
+  });
+
   return (
     <div className="listUsers">
       {keyWords
-        ? users
+        ? candidats
             .filter(
               (u) =>
                 u.keyWords &&
@@ -221,8 +28,12 @@ export default function ListUsers({ keyWords }) {
                     .includes(keyWords.toLowerCase()) ||
                   u.language.toLowerCase().includes(keyWords.toLowerCase())),
             )
-            .map((user) => <SingleUserShort key={user.id} user={user} />)
-        : users.map((user) => <SingleUserShort key={user.id} user={user} />)}
+            .map((candidat) => (
+              <SingleUserShort key={candidat.id} candidat={candidat} />
+            ))
+        : candidats.map((candidat) => (
+            <SingleUserShort key={candidat.id} candidat={candidat} />
+          ))}
     </div>
   );
 }
