@@ -1,8 +1,13 @@
-.App {
-  text-align: center;
+/* Temporaire */
+.App .btn-primary {
+  background-color: #007170;
+  border-color: #007170;
+}
+.App .text-primary {
+  color: #007170!important;
 }
 
-code {
-  background: #eee;
-  color: #d04;
-}
+/* Override WP */
+/* .main-wrapper .inner-wrap {
+  max-width: 1280px;
+} */
