@@ -8,35 +8,15 @@ import 'reactjs-popup/dist/index.css';
 export default function SingleUser(props) {
   const { candidat } = props;
 
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [phone, setPhone] = useState('');
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  // const data = {
-  //   name: name,
-  //   email: email,
-  //   phone: phone,
-  // };
-
-  //   axios
-  //     .post(`${process.env.REACT_APP_BACK_URL}/recruteur`, data)
-  //     .then((response) => {
-  //       history.push(`/user/${user.id}`).catch((error) => {
-  //         console.log(error.message);
-  //       });
-  //     });
-  // };
-  console.log(candidat);
-
   return (
     <div className="Card">
       <h2 className="Title">
         {candidat.firstname} {candidat.lastname.substring(0, 1)}.
       </h2>
-      <h3>Secteur d'activité: {candidat.activity_area_id}</h3>
+      <h3>
+        Secteur d'activité:{' '}
+        {candidat.sector_of_activity.map((sector) => sector.name_sector)}
+      </h3>
       <img className="ProfileImg" src={candidat.picture} alt={candidat.id} />
       <h3>{candidat.job}</h3>
       <h3>{candidat.description}</h3>

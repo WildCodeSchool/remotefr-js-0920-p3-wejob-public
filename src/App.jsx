@@ -12,7 +12,7 @@ function App() {
   const [user, setUser] = useState({});
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACK_URL}/recruteur/check`)
+      .get(`${process.env.REACT_APP_BACK_URL}/recruteurs/check`)
       .then((res) => {
         setUser(res.data);
       });
@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/">
             <ListUsers keyWords={keyWords} />
           </Route>
-          <Route exact path="/user/:id" component={SingleUserFull} />
+          <Route exact path="/candidat/:id" component={SingleUserFull} />
         </div>
       </div>
     </AuthContext.Provider>
