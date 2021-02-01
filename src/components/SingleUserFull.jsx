@@ -16,7 +16,7 @@ export default function SingleUserFull(props) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/candidats/${current_candidat.id}`)
+      .get(`http://localhost:8081/api/candidats/${current_candidat.id}`)
       .then((response) => {
         setCandidats(response.data);
       });

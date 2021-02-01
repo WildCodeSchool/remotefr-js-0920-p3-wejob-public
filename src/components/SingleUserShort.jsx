@@ -32,14 +32,29 @@ export default function SingleUser(props) {
   console.log(candidat);
 
   return (
-    <div className="Card">
-      <h2 className="Title">
-        {candidat.firstname} {candidat.lastname.substring(0, 1)}.
-      </h2>
-      <h3>Secteur d'activité: {candidat.activity_area_id}</h3>
-      <img className="ProfileImg" src={candidat.picture} alt={candidat.id} />
-      <h3>{candidat.job}</h3>
-      <h3>{candidat.description}</h3>
+    <div className="SingleUserShort card mb-3" style={{maxWidth: '32%'}}>
+      <div className="row g-0">
+        <div className="col-md-4">
+          <img src={candidat.picture} alt={`${candidat.firstname} ${candidat.lastname}`} />
+        </div>
+        <div className="col-md-8">
+          <div className="card-body">
+            <h5 className="card-title">{candidat.firstname} {candidat.lastname.substring(0, 1)}</h5>
+            <p className="card-text">
+              <h6>Secteur d'activité: {candidat.activity_area_id}</h6>
+            </p>
+            <p className="card-text">{candidat.job}</p>
+            <p className="card-text">{candidat.description}</p>
+            <Link
+              className="btn btn-primary"
+              to={`/candidat/${candidat.id}`}
+              key={candidat.id}
+            >
+              En savoir plus
+            </Link>
+          </div>
+        </div>
+      </div>
       {/* <Popup
         trigger={<button>En savoir plus sur ce candidat</button>}
         position="right center"
@@ -83,21 +98,14 @@ export default function SingleUser(props) {
               size="10"
               value={phone}
             ></input>
-            
+
             <button id="btnSeeMore" type="submit" className="btnSeeMore">
               Ok
             </button>
           </div>
         </form>
       </Popup> */}
-      <Link
-        id="btnSeeMore"
-        className="btnSeeMore"
-        to={`/candidat/${candidat.id}`}
-        key={candidat.id}
-      >
-        En savoir plus sur ce candidat
-      </Link>
     </div>
+
   );
 }

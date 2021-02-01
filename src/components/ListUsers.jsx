@@ -9,10 +9,10 @@ export default function ListUsers({ keyWords }) {
   const [candidats, setCandidats] = useState([]);
   console.log(candidats);
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/candidats`).then((response) => {
+    axios.get(`http://localhost:8081/api/candidats`).then((response) => {
       setCandidats(response.data);
     });
-  });
+  }, []);
 
   return (
     <div className="listUsers">
