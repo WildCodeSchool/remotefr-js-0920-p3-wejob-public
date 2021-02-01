@@ -7,9 +7,8 @@ export default function ListUsers({ keyWords }) {
   console.log('keyWords LU : ', keyWords);
 
   const [candidats, setCandidats] = useState([]);
-  console.log(candidats);
   useEffect(() => {
-    axios.get(`http://localhost:8081/api/candidats`).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/candidats`).then((response) => {
       setCandidats(response.data);
     });
   }, []);

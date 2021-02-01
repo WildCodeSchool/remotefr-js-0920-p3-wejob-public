@@ -6,3 +6,21 @@
   margin: 20px;
   border-radius: 15%;
 }
+
+.SingleUserShort {
+  padding: 1em;
+  border: 1px solid #f4f4f4;
+  background: #f4f4f4;
+}
+
+.SingleUserShort .card-body {
+  padding: 0;
+}
+
+.SingleUserShort .card-title {
+  padding-bottom: 0;
+}
+
+.SingleUserShort p.card-text .badge {
+  color: #fff;
+}

@@ -7,97 +7,99 @@ export default function SingleUserFull(props) {
   // eslint-disable-next-line
   // const current_user = users.find((user) => user.id == props.match.params.id);
 
-  const current_candidat = candidats.find(
-    (candidat) => candidat.id == props.match.params.id,
-  );
-  console.log(props.match.params.id, current_candidat);
+  const [candidat, setCandidat] = useState(null);
 
-  const [candidats, setCandidats] = useState([]);
+  // const candidat = candidats.find(
+  //   (candidat) => candidat.id == props.match.params.id,
+  // );
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8081/api/candidats/${current_candidat.id}`)
+      .get(`${process.env.REACT_APP_API_URL}/candidats/${props.match.params.id}`)
       .then((response) => {
-        setCandidats(response.data);
+        setCandidat(response.data[0]);
       });
-  });
+  }, []);
 
+  if (!candidat) {
+    return <p>Loading</p>;
+  }
   return (
     <div className="Full">
       <Link to="/">Retour</Link>
       <h1>
-        {current_candidat.firstname} {current_candidat.lastname}
+        {candidat.firstname} {candidat.lastname}
       </h1>
       <div>
-        <img src={current_candidat.picture} alt={current_candidat.lastname} />
+        <img src={candidat.picture} alt={candidat.lastname} />
       </div>
 
       <ul className="marker">
-        {current_candidat.description && (
+        {candidat.description && (
           <li>
             <strong>Description: </strong>
-            {current_candidat.description}
+            {candidat.description}
           </li>
         )}
 
-        {current_candidat.diploma && (
+        {candidat.diploma && (
           <li>
             <strong>Diploma: </strong>
-            {current_candidat.diploma}
+            {candidat.diploma}
           </li>
         )}
-        {current_candidat.activity_area_id && (
+        {candidat.activity_area_id && (
           <li>
             <strong>activity_area_id: </strong>
-            {current_candidat.activity_area_id}
+            {candidat.activity_area_id}
           </li>
         )}
-        {current_candidat.awailability && (
+        {candidat.awailability && (
           <li>
             <strong>Availability: </strong>
-            {current_candidat.awailability}
+            {candidat.awailability}
           </li>
         )}
-        {current_candidat.mobility && (
+        {candidat.mobility && (
           <li>
             <strong>Mobility: </strong>
-            {current_candidat.mobility}
+            {candidat.mobility}
           </li>
         )}
-        {current_candidat.years_of_experiment && (
+        {candidat.years_of_experiment && (
           <li>
             <strong>Years of experiment: </strong>
-            {current_candidat.years_of_experiment}
+            {candidat.years_of_experiment}
           </li>
         )}
-        {current_candidat.mail && (
+        {candidat.mail && (
           <li>
             <strong>Email: </strong>
-            {current_candidat.mail}
+            {candidat.mail}
           </li>
         )}
-        {current_candidat.open_to_formation && (
+        {candidat.open_to_formation && (
           <li>
             <strong>Open to formation: </strong>
-            {current_candidat.open_to_formation}
+            {candidat.open_to_formation}
           </li>
         )}
-        {current_candidat.cv && (
+        {candidat.cv && (
           <li>
             <strong>CV: </strong>
-            {current_candidat.cv}
+            {candidat.cv}
           </li>
         )}
-        {current_candidat.linkedin && (
+        {candidat.linkedin && (
           <li>
             <strong>Linkedin: </strong>
-            {current_candidat.linkedin}
+            {candidat.linkedin}
           </li>
         )}
-        {current_candidat.youtube && (
+        {candidat.youtube && (
           <li>
             <strong>Youtube: </strong>
-            {current_candidat.youtube}
+            {candidat.youtube}
           </li>
         )}
       </ul>

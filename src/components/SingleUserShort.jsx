@@ -8,50 +8,29 @@ import 'reactjs-popup/dist/index.css';
 export default function SingleUser(props) {
   const { candidat } = props;
 
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [phone, setPhone] = useState('');
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  // const data = {
-  //   name: name,
-  //   email: email,
-  //   phone: phone,
-  // };
-
-  //   axios
-  //     .post(`${process.env.REACT_APP_BACK_URL}/recruteur`, data)
-  //     .then((response) => {
-  //       history.push(`/user/${user.id}`).catch((error) => {
-  //         console.log(error.message);
-  //       });
-  //     });
-  // };
-  console.log(candidat);
-
   return (
     <div className="SingleUserShort card mb-3" style={{maxWidth: '32%'}}>
       <div className="row g-0">
         <div className="col-md-4">
-          <img src={candidat.picture} alt={`${candidat.firstname} ${candidat.lastname}`} />
+          <img src={candidat.picture} className="rounded-circle" alt={`${candidat.firstname} ${candidat.lastname}`} />
         </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h5 className="card-title">{candidat.firstname} {candidat.lastname.substring(0, 1)}</h5>
-            <p className="card-text">
-              <h6>Secteur d'activité: {candidat.activity_area_id}</h6>
-            </p>
-            <p className="card-text">{candidat.job}</p>
-            <p className="card-text">{candidat.description}</p>
+            <h5 className="card-title">
             <Link
-              className="btn btn-primary"
+              className="text-primary"
               to={`/candidat/${candidat.id}`}
               key={candidat.id}
             >
-              En savoir plus
+              {candidat.firstname} {candidat.lastname.substring(0, 1)}
             </Link>
+            </h5>
+            <p className="card-text">{candidat.job.split(';')[0].replace('.', '').substr(0, 50)}</p>
+            <p className="card-text">
+              {/* {candidat.sector_of_activity.map((sector) => <span key={sector.id_sector}>{sector.name_sector}</span>)} */}
+              <span class="badge bg-primary">{candidat.sector_of_activity[0].name_sector}</span>
+            </p>
+
           </div>
         </div>
       </div>
