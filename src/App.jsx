@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import Fuse from 'fuse.js';
 import './App.css';
 import Public from './components/Public';
 import ListUsers from './components/ListUsers';
@@ -12,6 +13,11 @@ function App() {
   const [keyWords, setKeyWords] = useState('');
   const [user, setUser] = useState(null);
   const [candidats, setCandidats] = useState([]);
+  const memoizedFuse = useMemo(() => new Fuse(candidats, {
+    keys: ['job'],
+    threshold: 0.3
+  }), [candidats]);
+  const memoizedResults = useMemo(() => keyWords ? memoizedFuse.search(keyWords).map(({ item }) => item) : candidats, [candidats, keyWords, memoizedFuse])
 
   useEffect(() => {
     axios
@@ -25,7 +31,7 @@ function App() {
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/candidats`).then((response) => {
-      setCandidats(response.data);
+      setCandidats(response.data.map(({ job, ...rest}) => ({ ...rest, job: job.split(';')})));
     });
   }, []);
 
@@ -36,7 +42,7 @@ function App() {
           <div className="Homepage">
             <Route exact path="/">
               <Public handleKeyWords={setKeyWords} />
-              <ListUsers keyWords={keyWords} />
+              <ListUsers candidates={memoizedResults} />
             </Route>
             <Route exact path="/candidat/:id" component={SingleUserFull} />
           </div>

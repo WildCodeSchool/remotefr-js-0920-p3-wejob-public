@@ -7,6 +7,7 @@ import 'reactjs-popup/dist/index.css';
 
 export default function SingleUser(props) {
   const { candidat } = props;
+  console.log(candidat)
 
   return (
     <div className="SingleUserShort card mb-3">
@@ -26,11 +27,11 @@ export default function SingleUser(props) {
                 to={`/candidat/${candidat.id}`}
                 key={candidat.id}
               >
-                {candidat.firstname} {candidat.lastname.substring(0, 1)}
+                {candidat.firstname} {candidat.lastname?.substring(0, 1)}
               </Link>
             </h5>
             <p className="card-text">
-              {candidat.job.split(';').map((job, idx) => <span key={idx} className="badge bg-primary">
+              {candidat.job && candidat.job.map((job, idx) => <span key={idx} className="badge bg-primary">
                 {job}
               </span>)}
             </p>
