@@ -13,24 +13,23 @@ export default function Public({ handleKeyWords }) {
 
   return (
     <form className="champsRecherche" onSubmit={handleSubmit}>
-      <h1>Trouver votre candidat idéal</h1>
+      <h1>Trouvez votre candidat idéal</h1>
       <div className="row">
-        <div className="col-md-8">
-          <div className="boxForm">
-            <label className="recherche" htmlFor="keyResearch">
-              Recherche par mots clés
-            </label>
-            <input
-              type="text"
-              className="researchKey"
-              id="keyResearch"
-              name="keyResearch"
-              // onChange={handleChange}
-              onChange={e => handleKeyWords(e.target.value)}
-            />
-          </div>
+        <div className="col-md-3">
+          <label className="recherche" htmlFor="keyResearch">
+            Recherche par mots clés
+          </label>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-6">
+          <input
+            type="text"
+            id="keyResearch"
+            name="keyResearch"
+            // onChange={handleChange}
+            onChange={e => handleKeyWords(e.target.value)}
+          />
+        </div>
+        <div className="col-md-3">
           <button
             className="btn btn-primary text-white"
             type="submit"

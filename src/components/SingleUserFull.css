@@ -2,3 +2,13 @@
   list-style-type: none;
   padding: 0px;
 }
+
+.SingleUserFull .badge {
+  color: #fff;
+  margin-right: 0.35em;
+}
+
+.SingleUserFull h4 {
+  padding: 0;
+  margin: 0 0 0.25em 0;
+}

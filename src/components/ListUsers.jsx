@@ -8,7 +8,7 @@ export default function ListUsers({ candidates }) {
   return (
     <div className="listUsers row">
       {candidates.map((candidat) => (
-        <div key={candidat.id} className="col-md-4">
+        <div key={candidat.id} className="col-md-6">
           <SingleUserShort candidat={candidat} />
         </div>
       ))}

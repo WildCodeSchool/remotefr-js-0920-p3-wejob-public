@@ -1,16 +1,8 @@
-.Card {
-  -moz-box-shadow: 6px 6px 20px #000000;
-  -webkit-box-shadow: 6px 6px 20px #000000;
-  box-shadow: 6px 6px 20px #000000;
-  width: 30%;
-  margin: 20px;
-  border-radius: 15%;
-}
-
 .SingleUserShort {
   padding: 1em;
   border: 1px solid #f4f4f4;
   background: #f4f4f4;
+  margin-bottom: 2em;
 }
 
 .SingleUserShort .card-body {
@@ -23,4 +15,28 @@
 
 .SingleUserShort p.card-text .badge {
   color: #fff;
+  margin-right: 0.5em;
+}
+
+.truncate {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-job {
+  background-color: #0E2A7F;
+}
+
+.badge-sector {
+  background-color: #159C00;
+}
+
+.badge-keyword {
+  background-color: #BC5500;
+}
+
+.badge-lang {
+  background-color: #BC55BC;
 }
