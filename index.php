@@ -9,6 +9,16 @@
 // TODO: gérer modes dev et prod
 // TODO: gérer le baseUrl du React Router
 
+defined( 'ABSPATH' ) || die();
+
+add_action('init', 'wejob_rewrite_rules');
+
+function wejob_rewrite_rules() {
+//	die($_SERVER['REQUEST_URI']);
+	add_reewrit_rule('^recherche-candidat/(.+)?', 'index.php?pagename=recherche-candidat', 'top');
+}
+
+
 /**
  * Replace relative links with abs links
  */
