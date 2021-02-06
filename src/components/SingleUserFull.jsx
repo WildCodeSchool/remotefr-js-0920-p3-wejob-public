@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './SingleUserFull.css';
 import axios from 'axios';
+import './SingleUserFull.css';
+import AuthContext from './AuthContext';
+import RecruiterForm from './RecruiterForm';
+import { getPictureUrl, getCvUrl } from '../helpers/asset-url-getters';
+import {
+  levelOfExperience,
+  availabilitylist,
+  mobilitylist,
+} from '../constants/selectors';
 
 export default function SingleUserFull(props) {
+  const { user, setUser } = useContext(AuthContext);
   // eslint-disable-next-line
   // const current_user = users.find((user) => user.id == props.match.params.id);
 
@@ -14,95 +23,192 @@ export default function SingleUserFull(props) {
   // );
 
   useEffect(() => {
+    if (!user) return;
     axios
-      .get(`${process.env.REACT_APP_API_URL}/candidats/${props.match.params.id}`)
+      .get(
+        `${process.env.REACT_APP_API_URL}/candidats/${props.match.params.id}`,
+      )
       .then((response) => {
-        setCandidat(response.data[0]);
-      });
-  }, []);
+        const { job, keywords, ...rest } = response.data;
+        const cand = {
+          ...rest,
+          job: job.split(';'),
+          keywords: job.split(';'),
+          experienceLabel: levelOfExperience[rest.years_of_experiment],
+          availabilityLabel: availabilitylist[rest.availability],
+          mobilityLabel: mobilitylist[rest.mobility],
+        };
+        setCandidat(cand);
+      })
+      .catch((err) => console.error(err));
+  }, [user]);
+
+  if (!user) {
+    return <RecruiterForm setUser={setUser} />;
+  }
 
   if (!candidat) {
     return <p>Loading</p>;
   }
   return (
-    <div className="Full">
-      <Link to="/">Retour</Link>
-      <h1>
-        {candidat.firstname} {candidat.lastname}
-      </h1>
-      <div>
-        <img src={candidat.picture} alt={candidat.lastname} />
+    <div className="SingleUserFull">
+      <div className="row">
+        <div className="col-md-3">
+          <Link to="/">Retour</Link>
+        </div>
+        <div className="col-md-9">
+          <h1>
+            {candidat.firstname} {candidat.lastname}
+          </h1>
+        </div>
+        <div className="col-md-3">
+          <img
+            src={getPictureUrl(candidat.picture)}
+            className="rounded-circle"
+            alt={`${candidat.firstname} ${candidat.lastname}`}
+          />
+        </div>
+        <main className="col-md-6">
+          <h4>Métier(s)</h4>
+          {candidat.job &&
+            candidat.job.map((job) => (
+              <span key={job} className="badge badge-job">
+                {job}
+              </span>
+            ))}
+          <ul className="marker">
+            {candidat.description && (
+              <li>
+                <strong>Description: </strong>
+                {candidat.description}
+              </li>
+            )}
+            {candidat.experienceLabel && (
+              <li>
+                <strong>Expérience : </strong>
+                {candidat.experienceLabel}
+              </li>
+            )}
+            {candidat.diploma && (
+              <li>
+                <strong>Diplôme(s) : </strong>
+                {candidat.diploma}
+              </li>
+            )}
+            {candidat.activity_area_id && (
+              <li>
+                <strong>activity_area_id: </strong>
+                {candidat.activity_area_id}
+              </li>
+            )}
+            {candidat.availability && (
+              <li>
+                <strong>Disponibilité : </strong>
+                {candidat.availabilityLabel}
+              </li>
+            )}
+            {candidat.mobility && (
+              <li>
+                <strong>Mobilité : </strong>
+                {candidat.mobilityLabel}
+              </li>
+            )}
+            {candidat.mail && (
+              <li>
+                <strong>Email: </strong>
+                {candidat.mail}
+              </li>
+            )}
+            {candidat.open_to_formation && (
+              <li>
+                <strong>Open to formation: </strong>
+                {candidat.open_to_formation}
+              </li>
+            )}
+          </ul>
+        </main>
+        <div className="col-md-3">
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <h6>Secteur(s) d&#39;activité</h6>
+              {candidat.sector_of_activity &&
+                candidat.sector_of_activity.map((sec) => (
+                  <span key={sec.id_sector} className="badge badge-sector">
+                    {sec.name_sector}
+                  </span>
+                ))}
+              <h6>Mots-clés</h6>
+              {candidat.keywords &&
+                candidat.keywords.map((kw) => (
+                  <span key={kw} className="badge badge-keyword">
+                    {kw}
+                  </span>
+                ))}
+              <h6>Langues</h6>
+              {candidat.language &&
+                candidat.language.map((lang) => (
+                  <span key={lang.id_lang} className="badge badge-lang">
+                    {lang.lang}
+                  </span>
+                ))}
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <ul className="marker">
+                {candidat.linkedin && (
+                  <li>
+                    <i className="fab fa-linkedin" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={candidat.linkedin}
+                    >
+                      Profil LinkedIn
+                    </a>
+                  </li>
+                )}
+                {candidat.youtube && (
+                  <li>
+                    <i className="fab fa-youtube" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={candidat.youtube}
+                    >
+                      Présentation vidéo
+                    </a>
+                  </li>
+                )}
+                {candidat.cv1 && (
+                  <li>
+                    <i className="far fa-file-pdf" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={getCvUrl(candidat.cv1)}
+                    >
+                      {candidat.cv1}
+                    </a>
+                  </li>
+                )}
+                {candidat.cv2 && (
+                  <li>
+                    <i className="far fa-file-pdf" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={getCvUrl(candidat.cv2)}
+                    >
+                      {candidat.cv2}
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <ul className="marker">
-        {candidat.description && (
-          <li>
-            <strong>Description: </strong>
-            {candidat.description}
-          </li>
-        )}
-
-        {candidat.diploma && (
-          <li>
-            <strong>Diploma: </strong>
-            {candidat.diploma}
-          </li>
-        )}
-        {candidat.activity_area_id && (
-          <li>
-            <strong>activity_area_id: </strong>
-            {candidat.activity_area_id}
-          </li>
-        )}
-        {candidat.awailability && (
-          <li>
-            <strong>Availability: </strong>
-            {candidat.awailability}
-          </li>
-        )}
-        {candidat.mobility && (
-          <li>
-            <strong>Mobility: </strong>
-            {candidat.mobility}
-          </li>
-        )}
-        {candidat.years_of_experiment && (
-          <li>
-            <strong>Years of experiment: </strong>
-            {candidat.years_of_experiment}
-          </li>
-        )}
-        {candidat.mail && (
-          <li>
-            <strong>Email: </strong>
-            {candidat.mail}
-          </li>
-        )}
-        {candidat.open_to_formation && (
-          <li>
-            <strong>Open to formation: </strong>
-            {candidat.open_to_formation}
-          </li>
-        )}
-        {candidat.cv && (
-          <li>
-            <strong>CV: </strong>
-            {candidat.cv}
-          </li>
-        )}
-        {candidat.linkedin && (
-          <li>
-            <strong>Linkedin: </strong>
-            {candidat.linkedin}
-          </li>
-        )}
-        {candidat.youtube && (
-          <li>
-            <strong>Youtube: </strong>
-            {candidat.youtube}
-          </li>
-        )}
-      </ul>
     </div>
   );
 }

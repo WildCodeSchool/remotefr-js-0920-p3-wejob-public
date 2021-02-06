@@ -19,6 +19,9 @@
   },
   "plugins": ["react"],
   "rules": {
+    "jsx-a11y/label-has-associated-control": [ 2, {
+      "assert": "htmlFor"
+    }],
     "no-console": "warn",
     "no-debugger": "warn",
     "react/jsx-filename-extension": "warn",
