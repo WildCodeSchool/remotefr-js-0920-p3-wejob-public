@@ -15,7 +15,7 @@ add_action('init', 'wejob_rewrite_rules');
 
 function wejob_rewrite_rules() {
 //	die($_SERVER['REQUEST_URI']);
-	add_reewrit_rule('^recherche-candidat/(.+)?', 'index.php?pagename=recherche-candidat', 'top');
+	add_rewrite_rule('recherche-candidat/(.+)?', 'index.php?pagename=recherche-candidat', 'top');
 }
 
 
