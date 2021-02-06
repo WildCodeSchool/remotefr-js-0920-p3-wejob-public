@@ -3,12 +3,27 @@
   padding: 0px;
 }
 
+.SingleUserFull main {
+  font-size: 18px;
+  line-height: 1.5em;
+}
+
 .SingleUserFull .badge {
   color: #fff;
   margin-right: 0.35em;
 }
 
-.SingleUserFull h4 {
+.SingleUserFull h4,
+.SingleUserFull h6 {
   padding: 0;
-  margin: 0 0 0.25em 0;
+  margin: 0.25em 0 0.5em 0;
+}
+
+.SingleUserFull h6 {
+  font-weight: bold;
+}
+
+.SingleUserFull .panel i {
+  width: 16px;
+  margin-right: 0.5em;
 }

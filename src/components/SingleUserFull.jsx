@@ -4,8 +4,12 @@ import axios from 'axios';
 import './SingleUserFull.css';
 import AuthContext from './AuthContext';
 import RecruiterForm from './RecruiterForm';
-import {getPictureUrl, getCvUrl} from '../helpers/asset-url-getters';
-import { levelOfExperience, availabilitylist, mobilitylist } from '../constants/selectors';
+import { getPictureUrl, getCvUrl } from '../helpers/asset-url-getters';
+import {
+  levelOfExperience,
+  availabilitylist,
+  mobilitylist,
+} from '../constants/selectors';
 
 export default function SingleUserFull(props) {
   const { user, setUser } = useContext(AuthContext);
@@ -32,7 +36,7 @@ export default function SingleUserFull(props) {
           keywords: job.split(';'),
           experienceLabel: levelOfExperience[rest.years_of_experiment],
           availabilityLabel: availabilitylist[rest.availability],
-          mobilityLabel: mobilitylist[rest.mobility]
+          mobilityLabel: mobilitylist[rest.mobility],
         };
         setCandidat(cand);
       })
@@ -46,24 +50,25 @@ export default function SingleUserFull(props) {
   if (!candidat) {
     return <p>Loading</p>;
   }
-  console.log(availabilitylist, candidat)
   return (
     <div className="SingleUserFull">
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-md-3">
           <Link to="/">Retour</Link>
+        </div>
+        <div className="col-md-9">
           <h1>
             {candidat.firstname} {candidat.lastname}
           </h1>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-3">
           <img
             src={getPictureUrl(candidat.picture)}
             className="rounded-circle"
             alt={`${candidat.firstname} ${candidat.lastname}`}
           />
         </div>
-        <div className="col-md-8">
+        <main className="col-md-6">
           <h4>Métier(s)</h4>
           {candidat.job &&
             candidat.job.map((job) => (
@@ -71,28 +76,6 @@ export default function SingleUserFull(props) {
                 {job}
               </span>
             ))}
-          <h4>Secteur(s) d&#39;activité</h4>
-          {candidat.sector_of_activity &&
-            candidat.sector_of_activity.map((sec) => (
-              <span key={sec.id_sector} className="badge badge-sector">
-                {sec.name_sector}
-              </span>
-            ))}
-            <h4>Mots-clés</h4>
-            {candidat.keywords &&
-              candidat.keywords.map((kw) => (
-                <span key={kw} className="badge badge-keyword">
-                  {kw}
-                </span>
-              ))}
-            <h4>Langues</h4>
-            {candidat.language && (
-              candidat.language.map((lang) => (
-                <span key={lang.id_lang} className="badge badge-lang">
-                  {lang.lang}
-                </span>
-              ))
-            )}
           <ul className="marker">
             {candidat.description && (
               <li>
@@ -100,10 +83,15 @@ export default function SingleUserFull(props) {
                 {candidat.description}
               </li>
             )}
-
+            {candidat.experienceLabel && (
+              <li>
+                <strong>Expérience : </strong>
+                {candidat.experienceLabel}
+              </li>
+            )}
             {candidat.diploma && (
               <li>
-                <strong>Diploma: </strong>
+                <strong>Diplôme(s) : </strong>
                 {candidat.diploma}
               </li>
             )}
@@ -125,12 +113,6 @@ export default function SingleUserFull(props) {
                 {candidat.mobilityLabel}
               </li>
             )}
-            {candidat.experienceLabel && (
-              <li>
-                <strong>Expérience : </strong>
-                {candidat.experienceLabel}
-              </li>
-            )}
             {candidat.mail && (
               <li>
                 <strong>Email: </strong>
@@ -143,38 +125,88 @@ export default function SingleUserFull(props) {
                 {candidat.open_to_formation}
               </li>
             )}
-            {candidat.cv && (
-              <li>
-                <strong>CV: </strong>
-                {candidat.cv}
-              </li>
-            )}
-            {candidat.linkedin && (
-              <li>
-                <i className="fab fa-linkedin" />
-                  {' '}
-                  <a rel="noopener noreferrer" target="_blank" href={candidat.linkedin}>{candidat.linkedin}</a>
-              </li>
-            )}
-            {candidat.youtube && (
-              <li><i className="fab fa-youtube" />
-              {' '}
-              <a rel="noopener noreferrer" target="_blank" href={candidat.youtube}>{candidat.youtube}</a>
-              </li>
-            )}
-            {candidat.cv1 && (
-              <li><i className="far fa-file-pdf" />
-              {' '}
-              <a rel="noopener noreferrer" target="_blank" href={getCvUrl(candidat.cv1)}>{candidat.cv1}</a>
-              </li>
-            )}
-            {candidat.cv2 && (
-              <li><i className="far fa-file-pdf" />
-              {' '}
-              <a rel="noopener noreferrer" target="_blank" href={getCvUrl(candidat.cv2)}>{candidat.cv2}</a>
-              </li>
-            )}
           </ul>
+        </main>
+        <div className="col-md-3">
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <h6>Secteur(s) d&#39;activité</h6>
+              {candidat.sector_of_activity &&
+                candidat.sector_of_activity.map((sec) => (
+                  <span key={sec.id_sector} className="badge badge-sector">
+                    {sec.name_sector}
+                  </span>
+                ))}
+              <h6>Mots-clés</h6>
+              {candidat.keywords &&
+                candidat.keywords.map((kw) => (
+                  <span key={kw} className="badge badge-keyword">
+                    {kw}
+                  </span>
+                ))}
+              <h6>Langues</h6>
+              {candidat.language &&
+                candidat.language.map((lang) => (
+                  <span key={lang.id_lang} className="badge badge-lang">
+                    {lang.lang}
+                  </span>
+                ))}
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <ul className="marker">
+                {candidat.linkedin && (
+                  <li>
+                    <i className="fab fa-linkedin" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={candidat.linkedin}
+                    >
+                      Profil LinkedIn
+                    </a>
+                  </li>
+                )}
+                {candidat.youtube && (
+                  <li>
+                    <i className="fab fa-youtube" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={candidat.youtube}
+                    >
+                      Présentation vidéo
+                    </a>
+                  </li>
+                )}
+                {candidat.cv1 && (
+                  <li>
+                    <i className="far fa-file-pdf" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={getCvUrl(candidat.cv1)}
+                    >
+                      {candidat.cv1}
+                    </a>
+                  </li>
+                )}
+                {candidat.cv2 && (
+                  <li>
+                    <i className="far fa-file-pdf" />{' '}
+                    <a
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={getCvUrl(candidat.cv2)}
+                    >
+                      {candidat.cv2}
+                    </a>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
