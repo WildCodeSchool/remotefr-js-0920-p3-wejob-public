@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 function RecruiterForm({ setUser }) {
@@ -69,5 +70,9 @@ function RecruiterForm({ setUser }) {
     </form>
   );
 }
+
+RecruiterForm.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
 
 export default RecruiterForm;
