@@ -38,13 +38,13 @@ export default function SingleUserFull() {
         };
         setCandidat(cand);
       })
-      .catch(() =>
-        setError(
-          new Error(
-            "Une erreur s'est produite, veuillez nous contacter ou réessayer ultérieurement.",
-          ),
-        ),
-      );
+      .catch((err) => {
+        const msg =
+          err?.response?.status === 404
+            ? "Cette fiche candidat n'existe plus ou a été momentanément désactivée"
+            : "Une erreur s'est produite, veuillez nous contacter ou réessayer ultérieurement.";
+        setError(new Error(msg));
+      });
   }, [user, slug]);
 
   if (!user) {
@@ -54,7 +54,9 @@ export default function SingleUserFull() {
   if (error) {
     return (
       <div className="container">
-        <div className="alert alert-danger">{error.message}</div>
+        <div className="alert alert-danger">
+          {error.message}. <Link to="/">Retour à la liste</Link>
+        </div>
       </div>
     );
   }
