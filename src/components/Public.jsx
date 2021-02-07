@@ -22,7 +22,7 @@ function Public({ onChangeKeywords }) {
             type="text"
             id="keyResearch"
             name="keyResearch"
-            onChange={onChangeKeywords}
+            onChange={(e) => onChangeKeywords(e.target.value)}
           />
         </div>
         <div className="col-md-3">
