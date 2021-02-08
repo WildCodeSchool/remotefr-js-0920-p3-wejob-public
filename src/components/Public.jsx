@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import './Public.css';
 
-export default function Public({ handleKeyWords }) {
-  const [keywords, setKeywords] = useState('');
-
-  const handleChange = (e) => setKeywords(e.target.value);
-
+function Public({ onChangeKeywords }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleKeyWords(keywords);
   };
 
   return (
@@ -25,15 +22,11 @@ export default function Public({ handleKeyWords }) {
             type="text"
             id="keyResearch"
             name="keyResearch"
-            // onChange={handleChange}
-            onChange={e => handleKeyWords(e.target.value)}
+            onChange={(e) => onChangeKeywords(e.target.value)}
           />
         </div>
         <div className="col-md-3">
-          <button
-            className="btn btn-primary text-white"
-            type="submit"
-          >
+          <button className="btn btn-primary text-white" type="submit">
             Valider
           </button>
         </div>
@@ -41,3 +34,9 @@ export default function Public({ handleKeyWords }) {
     </form>
   );
 }
+
+Public.propTypes = {
+  onChangeKeywords: PropTypes.func.isRequired,
+};
+
+export default Public;

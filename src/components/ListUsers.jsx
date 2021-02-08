@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './ListUsers.css';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import SingleUserShort from './SingleUserShort';
-import CandidatesContext from '../contexts/candidates';
 
-export default function ListUsers({ candidates }) {
+function ListUsers({ candidates }) {
   return (
     <div className="listUsers row">
       {candidates.map((candidat) => (
@@ -15,3 +14,13 @@ export default function ListUsers({ candidates }) {
     </div>
   );
 }
+
+ListUsers.propTypes = {
+  candidates: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+    }),
+  ).isRequired,
+};
+
+export default ListUsers;
