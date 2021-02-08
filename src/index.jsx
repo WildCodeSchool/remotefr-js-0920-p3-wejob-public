@@ -8,13 +8,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 import './index.css';
 import App from './App';
 
-const isInWordPress =
-  !process.env.REACT_APP_RUN_IN_WP || process.env.NODE_ENV === 'production';
-const basename = isInWordPress
-  ? window.location.pathname.replace(/\/?$/, '')
-  : '/';
+// const isInWordPress = !process.env.REACT_APP_RUN_IN_WP || process.env.NODE_ENV === 'production';
+// const basename = isInWordPress ? window.location.pathname.replace(/\/?$/, '') : '/';
 // const basename = window.location.pathname.replace(/\/?$/, '');
-// const basename = '/';
+const basename = '/recherche-candidat';
 
 function ErrorFallback({ error }) {
   return (
