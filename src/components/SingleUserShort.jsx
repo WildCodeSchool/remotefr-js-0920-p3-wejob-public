@@ -1,25 +1,26 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import './SingleUserShort.css';
 import { Link } from 'react-router-dom';
-import {getPictureUrl} from '../helpers/asset-url-getters';
+import PropTypes from 'prop-types';
+import { getPictureUrl } from '../helpers/asset-url-getters';
 import 'reactjs-popup/dist/index.css';
+import './SingleUserShort.css';
 
-const limitLength = (str, maxLen = 10) => {
-  const words = str.split(' ');
-  let output = words[0];
-  let i = 1;
-  for (i = 1; i < words.length; i += 1) {
-    const toAdd = `${words[i]}`;
-    const next = `${output} ${toAdd}`;
-    if (next.length > maxLen) break;
-    output = next;
-  }
-  const didBreak = i < words.length;
-  return <>{output}{didBreak && <>&hellip;</>}</>;
-}
+// const limitLength = (str, maxLen = 10) => {
+//   const words = str.split(' ');
+//   let output = words[0];
+//   let i = 1;
+//   for (i = 1; i < words.length; i += 1) {
+//     const toAdd = `${words[i]}`;
+//     const next = `${output} ${toAdd}`;
+//     if (next.length > maxLen) break;
+//     output = next;
+//   }
+//   const didBreak = i < words.length;
+//   return <>{output}{didBreak && <>&hellip;</>}</>;
+// }
 
-export default function SingleUser(props) {
+function SingleUser(props) {
   const { candidat } = props;
 
   return (
@@ -37,17 +38,20 @@ export default function SingleUser(props) {
             <h4 className="card-title">
               <Link
                 className="text-primary"
-                to={`/candidat/${candidat.id}`}
+                to={`/candidat/${candidat.slug}`}
                 key={candidat.id}
               >
-                {candidat.firstname} {candidat.lastname?.substring(0, 1)}
+                {candidat.firstname} {candidat.lastname}
               </Link>
             </h4>
             <p className="card-text">
-              {candidat.job && candidat.job.map((job, idx) => <span key={idx} className="badge badge-job truncate">
-              {/* {limitLength(job, 30)} */}
-              {job}
-              </span>)}
+              {candidat.job &&
+                candidat.job.map((job, idx) => (
+                  <span key={idx} className="badge badge-job truncate">
+                    {/* {limitLength(job, 30)} */}
+                    {job}
+                  </span>
+                ))}
             </p>
             <p className="card-text">
               {/* {candidat.sector_of_activity.map((sector) => <span key={sector.id_sector}>{sector.name_sector}</span>)} */}
@@ -58,7 +62,7 @@ export default function SingleUser(props) {
             <div className="text-right">
               <Link
                 className="btn btn-primary"
-                to={`/candidat/${candidat.id}`}
+                to={`/candidat/${candidat.slug}`}
                 key={candidat.id}
               >
                 Voir plus
@@ -76,3 +80,21 @@ export default function SingleUser(props) {
     </div>
   );
 }
+
+SingleUser.propTypes = {
+  candidat: PropTypes.shape({
+    id: PropTypes.number,
+    slug: PropTypes.string,
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    picture: PropTypes.string,
+    job: PropTypes.arrayOf(PropTypes.string),
+    sector_of_activity: PropTypes.arrayOf(
+      PropTypes.shape({
+        name_sector: PropTypes.string,
+      }),
+    ),
+  }).isRequired,
+};
+
+export default SingleUser;

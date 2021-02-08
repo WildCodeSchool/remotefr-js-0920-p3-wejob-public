@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './SingleUserFull.css';
 import AuthContext from './AuthContext';
@@ -11,13 +11,11 @@ import {
   mobilitylist,
 } from '../constants/selectors';
 
-export default function SingleUserFull(props) {
+export default function SingleUserFull() {
+  const { slug } = useParams();
   const { user, setUser } = useContext(AuthContext);
-  // eslint-disable-next-line
-  // const current_user = users.find((user) => user.id == props.match.params.id);
-
   const [candidat, setCandidat] = useState(null);
-
+  const [error, setError] = useState(null);
   // const candidat = candidats.find(
   //   (candidat) => candidat.id == props.match.params.id,
   // );
@@ -25,9 +23,9 @@ export default function SingleUserFull(props) {
   useEffect(() => {
     if (!user) return;
     axios
-      .get(
-        `${process.env.REACT_APP_API_URL}/candidats/${props.match.params.id}`,
-      )
+      .get(`${process.env.REACT_APP_API_URL}/candidats/${slug}`, {
+        withCredentials: true,
+      })
       .then((response) => {
         const { job, keywords, ...rest } = response.data;
         const cand = {
@@ -40,11 +38,27 @@ export default function SingleUserFull(props) {
         };
         setCandidat(cand);
       })
-      .catch((err) => console.error(err));
-  }, [user]);
+      .catch((err) => {
+        const msg =
+          err?.response?.status === 404
+            ? "Cette fiche candidat n'existe plus ou a été momentanément désactivée"
+            : "Une erreur s'est produite, veuillez nous contacter ou réessayer ultérieurement.";
+        setError(new Error(msg));
+      });
+  }, [user, slug]);
 
   if (!user) {
     return <RecruiterForm setUser={setUser} />;
+  }
+
+  if (error) {
+    return (
+      <div className="container">
+        <div className="alert alert-danger">
+          {error.message}. <Link to="/">Retour à la liste</Link>
+        </div>
+      </div>
+    );
   }
 
   if (!candidat) {
